@@ -1,18 +1,22 @@
 import List from "../views/List.js";
-import { useDispatch } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchTables } from "../redux/tablesRedux";
+import { Row, Col } from 'react-bootstrap';
+import { getAllTables} from '../redux/tablesRedux';
 
 const Home = () => {
-    const dispatch = useDispatch()
-
-    useEffect(()=> dispatch(fetchTables()), [dispatch])
+    const dispatch = useDispatch();
+    useEffect(()=> dispatch(fetchTables()), [dispatch]);
+    const tablesList = useSelector(getAllTables)
 
     return (
-        <div>
-            <h1>Home this is...All tables</h1>
-            <List/>
-        </div>
+        <Row>
+            <Col>
+                <h1>All tables</h1>;
+                {tablesList.map(tableList => <List props={tableList} key={tableList.id}/>)}
+            </Col>
+        </Row>
     )
 }
 export default Home;

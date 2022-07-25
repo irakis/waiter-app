@@ -1,17 +1,17 @@
-import { Button, Form, Row, Col } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 
-const List = (props) => {
-    const handleClick = () => {
+const List = ({props}) => {
+    const handleClick = (e) => {
+        e.preventDefault();
         console.log('fire!')
     }
     return (
         <Row onClick={handleClick}>
-            <Col>{props}</Col>
-            <Col>
-                <Form.Select size="lg">Status:
-                    <option>Large select</option>
-                </Form.Select></Col>
-            <Col>
+            <Col sm={3} ><b>Table: {props.id}</b></Col>
+            <Col sm={6}>
+                <p className="m-0"><b>Status:</b>{props.status}</p>
+            </Col>
+            <Col sm={3} className="mt-2 mb-2">
                 <Button variant="primary">Show more</Button>
             </Col>
         </Row>
