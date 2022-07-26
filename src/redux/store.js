@@ -9,7 +9,7 @@ const subreducers = {
     tables: tablesReducer,
     status: statusReducer
 }
-const reducer = combineReducers(subreducers)
+const reducer = combineReducers(subreducers);
 
 const store = createStore(
     reducer,

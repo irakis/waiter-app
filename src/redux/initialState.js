@@ -1,8 +1,7 @@
 // eslint-disable-next-line
 const initialState = {
-    tables : [
-        
-    ]
+    status: [],
+    tables : []
 
 }
 

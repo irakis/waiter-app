@@ -6,8 +6,10 @@ import Home from '../src/components/Home';
 import Header from '../src/views/Header';
 import { Routes, Route } from 'react-router-dom';
 import NotFound from './components/NotFound';
+import { fetchStatus } from './redux/statusRedux';
  
 function App() {
+  fetchStatus();
   
   return (
     <Container>
@@ -19,7 +21,7 @@ function App() {
         </Routes>
       <Footer/>
     </Container>
-  );
-}
+  )
+};
 
 export default App;

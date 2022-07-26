@@ -22,6 +22,7 @@ export const fetchTables = () => {
 }
 
 export const tablesReducer = (statePart = [], action) => {
+    console.log('action tablesReducer: ', action)
     switch (action.type) {
         case UPDATE_TABLES:
             return [...action.payload];
