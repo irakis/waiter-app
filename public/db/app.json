@@ -1,4 +1,9 @@
 {
+    "status" : [
+      "Busy",
+      "Cleaning",
+      "Free"
+    ],
     "tables": [
       { "id": "1",
         "peopleAmount": "1",

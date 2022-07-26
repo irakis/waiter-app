@@ -1,5 +1,6 @@
 //selectors
-export const getAllTables = (state) => { return state.tables};
+export const getAllTables = (state) => { return state.tables };
+export const findTable = ({ tables }, tableId) => tables.find(table => table.id === tableId);
 
 //creators
 
@@ -23,7 +24,7 @@ export const fetchTables = () => {
 export const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
         case UPDATE_TABLES:
-            return action.payload;
+            return [...action.payload];
         default:
             return statePart;
     }

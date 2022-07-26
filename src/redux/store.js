@@ -1,11 +1,13 @@
 
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import { tablesReducer } from '../redux/tablesRedux.js';
+import { statusReducer } from '../redux/statusRedux.js';
 import thunk from 'redux-thunk';
 import initialState from './initialState';
 
 const subreducers = {
-    tables: tablesReducer
+    tables: tablesReducer,
+    status: statusReducer
 }
 const reducer = combineReducers(subreducers)
 
@@ -17,6 +19,5 @@ const store = createStore(
         window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
     )
 )
-console.log('store?: ', initialState);
 
 export default store;

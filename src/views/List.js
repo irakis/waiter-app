@@ -1,18 +1,22 @@
 import { Button, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const List = ({props}) => {
+    const tableId = props.id;
     const handleClick = (e) => {
         e.preventDefault();
-        console.log('fire!')
+        console.log('props w List: ', props.status);
     }
     return (
-        <Row onClick={handleClick}>
-            <Col sm={3} ><b>Table: {props.id}</b></Col>
-            <Col sm={6}>
-                <p className="m-0"><b>Status:</b>{props.status}</p>
+        <Row className='mt-3 mb-3' onClick={handleClick}>
+            <Col sm={3} className="mt-3 mb-auto" ><b>Table: {props.id}</b></Col>
+            <Col sm={6} >
+                <p className="mt-3 mb-auto"><b>Status:</b>{props.status}</p>
             </Col>
             <Col sm={3} className="mt-2 mb-2">
-                <Button variant="primary">Show more</Button>
+                <Link to={"/table/"+ tableId}>
+                    <Button variant="primary">Show more</Button>
+                </Link>
             </Col>
         </Row>
     )
