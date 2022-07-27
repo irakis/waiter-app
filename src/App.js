@@ -7,9 +7,12 @@ import Header from '../src/views/Header';
 import { Routes, Route } from 'react-router-dom';
 import NotFound from './components/NotFound';
 import { fetchStatus } from './redux/statusRedux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
  
 function App() {
-  fetchStatus();
+  const dispatch = useDispatch();
+  useEffect(()=>dispatch(fetchStatus()), []);
   
   return (
     <Container>

@@ -3,12 +3,9 @@ import { Link } from 'react-router-dom';
 
 const List = ({props}) => {
     const tableId = props.id;
-    const handleClick = (e) => {
-        e.preventDefault();
-        console.log('props w List: ', props.status);
-    }
+   
     return (
-        <Row className='mt-3 mb-3' onClick={handleClick}>
+        <Row className='mt-3 mb-3'>
             <Col sm={3} className="mt-3 mb-auto" ><b>Table: {props.id}</b></Col>
             <Col sm={6} >
                 <p className="mt-3 mb-auto"><b>Status:</b>{props.status}</p>
