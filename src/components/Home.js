@@ -7,9 +7,8 @@ import List from "../views/List.js";
 import { fetchStatus } from "../redux/statusRedux";
 
 const Home = () => {
-    fetchStatus()
-    const dispatch = useDispatch()
-    useEffect(()=> dispatch(fetchTables()), [dispatch])
+    const dispatch = useDispatch();
+    useEffect(()=> dispatch(fetchTables()), [dispatch]);
     const tablesList = useSelector(getAllTables);
     console.log('tablesList: ',tablesList);
 
