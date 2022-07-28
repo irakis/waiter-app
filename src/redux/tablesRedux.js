@@ -1,6 +1,6 @@
 //selectors
 export const getAllTables = (state) => { return state.tables };
-export const findTable = ({ tables }, tableId) => tables.find(table => table.id === tableId);
+export const findTable = ( { tables } , tableId) => tables.find(table => table.id === tableId);
 
 //creators
 
@@ -25,8 +25,6 @@ export const fetchTables = () => {
     }
 };
 
-
-
 export const fetchUpdateRequest = ({ currentTable }) => {
     console.log('redux fetch:', currentTable);
     const requestOptions = {
@@ -39,17 +37,14 @@ export const fetchUpdateRequest = ({ currentTable }) => {
         fetch(`http://localhost:3131/api/tables/${currentTable.id}`, requestOptions)
             .then(response => response.json())
             .then ((currentTable) => dispatch(updateApiTables(currentTable)))
-    
             .catch (rejected => {
                 console.log('fetch rejected info: ', rejected)
             }
         )
-    }
-    
+    } 
 }
 
 export const tablesReducer = (statePart = [], action) => {
-    console.log('tableReducer payload: ', action.payload);
     switch (action.type) {
         case UPDATE_TABLES:
             return [...action.payload];

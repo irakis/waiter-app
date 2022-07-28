@@ -11,6 +11,7 @@ const SingleTable = () => {
     const { tableId } = useParams();
     const table = useSelector(state => findTable(state, tableId))
     const [currentTable, setCurrentTable] = useState(table);
+    console.log('singleTable state: ',currentTable)
 
     const handleStatus = (props) => {
         setCurrentTable({...currentTable, status: props});
@@ -26,7 +27,7 @@ const SingleTable = () => {
                 <Form onSubmit={handleSubmit} >
                     <FormGroup className='d-flex'>
                         <Form.Label className='m-3'>Status</Form.Label>
-                        <SelectOption props={currentTable.status} action={handleStatus}/>
+                        <SelectOption props={ tableId } action={handleStatus}/>
                     </FormGroup>
                     <FormGroup className='d-flex m-3'>
                         <Form.Label className='m-3'>People</Form.Label>

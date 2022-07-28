@@ -8,14 +8,14 @@
   "tables": [
     {
       "id": "1",
-      "peopleAmount": "18",
+      "peopleAmount": "2",
       "maxPeople": "9",
-      "status": "Busy",
-      "bill": "400"
+      "bill": "39",
+      "status": "Free"
     },
     {
       "id": "2",
-      "peopleAmount": "2",
+      "peopleAmount": "4",
       "maxPeople": "9",
       "status": "Cleaning",
       "bill": "10"

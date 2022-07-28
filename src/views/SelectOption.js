@@ -3,10 +3,13 @@ import Form from 'react-bootstrap/Form';
 import { useSelector } from 'react-redux';
 import { getAllOptions } from '../redux/statusRedux';
 import { useState } from 'react';
+import { findTable } from '../redux/tablesRedux';
 
 function SelectOption({ props , action }) {
+    console.log(props);
     const allOptions = useSelector(getAllOptions);
-    const [status, setState] = useState(props);
+    const currentStatus = useSelector(state => findTable(state, props.tableId));
+    const [status, setState] = useState(currentStatus);
     
     useEffect(()=> action(status), [status]);
 
