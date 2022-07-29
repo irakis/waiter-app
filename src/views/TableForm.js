@@ -1,17 +1,16 @@
-import React from "react";
+import React from 'react';
 import { Row, Col, Form, Button, FormGroup } from "react-bootstrap";
-import { useParams } from 'react-router';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchUpdateRequest, findTable } from "../redux/tablesRedux";
 import SelectOption from "../views/SelectOption";
+import { useParams } from 'react-router';
+import { useSelector } from 'react-redux';
 import { useState, useEffect } from "react";
-import Spinner from 'react-bootstrap/Spinner';
+import { findTable } from "../redux/tablesRedux";
 
-const SingleTable = () => {
-    const dispatch = useDispatch();
+
+const TableForm = (action) => {
     const { tableId } = useParams();
     const table = useSelector(state => findTable(state, tableId))
-    const [currentTable, setCurrentTable] = useState(table);
+    const [currentTable, setCurrentTable] = useState(table || '');
     console.log('singleTable state: ',currentTable)
 
     useEffect(() => {
@@ -21,25 +20,16 @@ const SingleTable = () => {
     const handleStatus = (props) => {
         setCurrentTable({...currentTable, status: props});
     }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        dispatch(fetchUpdateRequest({currentTable}));
-    }
 
-    if (!table) return (
-        <div className="d-flex justify-content-center">
-            <Spinner variant="primary" animation="border" role="status"/>
-        </div>
-    )
-    
+
     return (
         <Row>
             <Col>
-                <h1>Table { tableId }</h1>
-                <Form onSubmit={handleSubmit} >
+                <h1>Table {tableId}</h1>
+                <Form onSubmit={action} >
                     <FormGroup className='d-flex'>
                         <Form.Label className='m-3'>Status</Form.Label>
-                        <SelectOption data={ tableId } action={handleStatus}/>
+                        <SelectOption data={tableId} action={handleStatus} />
                     </FormGroup>
                     <FormGroup className='d-flex m-3'>
                         <Form.Label className='m-3'>People</Form.Label>
@@ -57,6 +47,9 @@ const SingleTable = () => {
             </Col>
         </Row>
 
+
+
     )
 }
-export default SingleTable;
+
+export default TableForm;

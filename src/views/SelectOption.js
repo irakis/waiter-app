@@ -5,10 +5,10 @@ import { getAllOptions } from '../redux/statusRedux';
 import { useState } from 'react';
 import { findTable } from '../redux/tablesRedux';
 
-function SelectOption({ props , action }) {
-    console.log(props);
+function SelectOption({ tableId , action }) {
+    console.log(tableId);
     const allOptions = useSelector(getAllOptions);
-    const currentStatus = useSelector(state => findTable(state, props.tableId));
+    const currentStatus = useSelector(state => findTable(state, tableId));
     const [status, setState] = useState(currentStatus);
     
     useEffect(()=> action(status), [status]);
