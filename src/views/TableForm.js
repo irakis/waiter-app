@@ -13,6 +13,16 @@ const TableForm = ({action}) => {
     const [currentTable, setCurrentTable] = useState(table);
     console.log('currentTable??: ', currentTable);
 
+    if(!currentTable) {setCurrentTable(
+        {
+            id: "",
+            peopleAmount: "",
+            maxPeople: "9",
+            status: "Free",
+            bill: ""
+        })
+    };
+
     useEffect(() => {
         setCurrentTable(table)
       }, [table])
