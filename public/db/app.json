@@ -10,7 +10,8 @@
       "id": "1",
       "peopleAmount": "3",
       "maxPeople": "9",
-      "bill": "38"
+      "status": "Free",
+      "bill": "3"
     },
     {
       "id": "2",
