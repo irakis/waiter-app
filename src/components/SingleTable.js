@@ -8,7 +8,6 @@ const SingleTable = () => {
     const dispatch = useDispatch()
 
     const handleSubmit = ({currentTable}) => {
-        console.log('currentTable w singletable: ',{currentTable});
         dispatch(fetchUpdateRequest({ currentTable }));
 
         if (!{ currentTable }) return (
