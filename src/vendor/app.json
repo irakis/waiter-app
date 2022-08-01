@@ -8,17 +8,17 @@
   "tables": [
     {
       "id": "1",
-      "peopleAmount": "4",
+      "peopleAmount": "5",
       "maxPeople": "9",
       "status": "Cleaning",
-      "bill": "1"
+      "bill": "3"
     },
     {
       "id": "2",
       "peopleAmount": "6",
       "maxPeople": "9",
       "status": "Cleaning",
-      "bill": "9"
+      "bill": "7"
     },
     {
       "id": "3",

@@ -1,28 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Row, Col, Form, Button, FormGroup } from "react-bootstrap";
 import SelectOption from "../views/SelectOption";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useState } from "react";
 import { findTable } from "../redux/tablesRedux";
 
 
 const TableForm = ({ action }) => {
-
-    const emptyTable = {
-        id: "",
-        peopleAmount: "0",
-        maxPeople: "9",
-        status: "Free",
-        bill: "0"
-    };
+    const navigate = useNavigate();
 
     const { tableId } = useParams();
-    const table = useSelector(state => findTable(state, tableId));
-    const [currentTable, setCurrentTable] = useState(table==undefined ? emptyTable : table);
 
+    const table = useSelector(state => findTable(state, tableId));
+    console.log('table', table);
+
+    useEffect(()=> {if(table===undefined) {navigate("/", { replace : true }) }}, [table]);
+    const [currentTable, setCurrentTable] = useState(table);
+    
     console.log('currentTable??: ', currentTable);
-    console.log({ tableId });
 
     const handleStatus = (props) => {
         setCurrentTable({ ...currentTable, status: props });
@@ -31,7 +27,8 @@ const TableForm = ({ action }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         action({ currentTable });
-        setCurrentTable(currentTable);
+        //setCurrentTable(currentTable);
+        navigate("/", { replace: true })
     }
 
 

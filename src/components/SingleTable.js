@@ -9,6 +9,7 @@ const SingleTable = () => {
 
     const handleSubmit = ({currentTable}) => {
         dispatch(fetchUpdateRequest({ currentTable }));
+        console.log('currentTable w SingleTable: ', currentTable)
 
         if (!{ currentTable }) return (
             <div className="d-flex justify-content-center">

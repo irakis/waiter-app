@@ -10,6 +10,7 @@ const Header = () => {
         <Navbar.Brand>Waiter.app</Navbar.Brand>
         <Nav className='me-auto, justify-content-end'>
           <Nav.Link as={NavLink} to="/">Home</Nav.Link>
+          <Nav.Link as={NavLink} to="/add">Add Table</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

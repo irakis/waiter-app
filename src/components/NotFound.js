@@ -6,7 +6,6 @@ const NotFound = () => {
         <div>
             <h2>
                 Error 404 !
-                <TableForm/>
             </h2>
         </div>
     )
