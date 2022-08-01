@@ -7,6 +7,7 @@ import Header from '../src/views/Header';
 import { Routes, Route } from 'react-router-dom';
 import NotFound from './components/NotFound';
 import { fetchStatus } from './redux/statusRedux';
+import { fetchTables } from './redux/tablesRedux';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import AddTableForm from './components/AddTableForm';
@@ -14,6 +15,7 @@ import AddTableForm from './components/AddTableForm';
 function App() {
   const dispatch = useDispatch();
   useEffect(()=>dispatch(fetchStatus()), []);
+  useEffect(()=> dispatch(fetchTables()), [dispatch]);
   
   return (
     <Container>

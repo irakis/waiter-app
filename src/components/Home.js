@@ -8,9 +8,8 @@ import { fetchStatus } from "../redux/statusRedux";
 
 const Home = () => {
     const dispatch = useDispatch();
-    useEffect(()=> dispatch(fetchTables()), [dispatch]);
+    //useEffect(()=> dispatch(fetchTables()), [dispatch]);
     const tablesList = useSelector(getAllTables);
-    console.log('tablesList: ',tablesList);
 
     return (
         <Row>

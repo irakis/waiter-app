@@ -1,64 +1,56 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Row, Col, Form, Button, FormGroup } from "react-bootstrap";
-import SelectOption from "../views/SelectOption";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useState } from "react";
-import { findTable } from "../redux/tablesRedux";
+import { useState, useEffect } from "react";
+import { getAllOptions } from '../redux/statusRedux';
 
 
-const TableForm = ({ action }) => {
+const TableForm = ({ action, ...props }) => {
     const navigate = useNavigate();
+    console.log('props: ', props.data, props.id)
 
-    const { tableId } = useParams();
+    const [editTable, setEditTable] = useState(props.data || {});
 
-    const table = useSelector(state => findTable(state, tableId));
-    console.log('table', table);
+    const allOptions = useSelector(getAllOptions);
+    useEffect(() => setEditTable({...editTable, id : props.id}), [editTable.status])
 
-    useEffect(()=> {if(table===undefined) {navigate("/", { replace : true }) }}, [table]);
-    const [currentTable, setCurrentTable] = useState(table);
-    
-    console.log('currentTable??: ', currentTable);
-
-    const handleStatus = (props) => {
-        setCurrentTable({ ...currentTable, status: props });
-    }
+    console.log('editTable: ', editTable)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        action({ currentTable });
-        //setCurrentTable(currentTable);
+        action({ editTable });
         navigate("/", { replace: true })
     }
-
 
     return (
         <Row>
             <Col>
-                <h1>Table {tableId}</h1>
+                <h1>Table {props.id}</h1>
                 <Form onSubmit={handleSubmit} >
                     <FormGroup className='d-flex'>
                         <Form.Label className='m-3'>Status</Form.Label>
-                        <SelectOption action={handleStatus} data={ tableId } />
+                        <Form.Select onChange={e => setEditTable({ ...editTable, status: (e.target.value) })}>
+                            <option>{editTable.status}</option>
+                            {allOptions.map(option => { return <option value={option} key={option}>{option}</option> })}
+                        </Form.Select>
                     </FormGroup>
                     <FormGroup className='d-flex m-3'>
                         <Form.Label className='m-3'>People</Form.Label>
-                        <Form.Control type="number" className='m-3' value={currentTable.peopleAmount || ""} onChange={e => setCurrentTable({ ...currentTable, peopleAmount: (e.target.value) })} />
+                        <Form.Control type="number" className='m-3' value={editTable.peopleAmount || ""} onChange={e => setEditTable({ ...editTable, peopleAmount: (e.target.value) })} />
                         <p>/</p>
-                        <Form.Control type="text" className='m-3' defaultValue={currentTable.maxPeople} />
+                        <Form.Control type="text" className='m-3' 
+                            defaultValue={!editTable.maxPeople ? setEditTable({...editTable, maxPeople : '9'}) : editTable.maxPeople} />
                     </FormGroup>
                     <FormGroup className='d-flex'>
                         <Form.Label className='m-3'>Bill $</Form.Label>
-                        <Form.Control type="number" className='m-3' value={currentTable.bill}
-                            onChange={e => setCurrentTable({ ...currentTable, bill: (e.target.value) })} />
+                        <Form.Control type="number" className='m-3' value={!editTable.bill ? setEditTable({...editTable, bill : '0'}) : editTable.bill}
+                            onChange={e => setEditTable({ ...editTable, bill: (e.target.value) })} />
                     </FormGroup>
                     <Button variant="primary" type="submit">Update</Button>
                 </Form>
             </Col>
         </Row>
-
-
-
     )
 }
 
