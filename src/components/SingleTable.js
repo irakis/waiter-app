@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
-import { fetchUpdateRequest} from "../redux/tablesRedux";
+import { fetchUpdateRequest } from "../redux/tablesRedux";
 import Spinner from 'react-bootstrap/Spinner';
 import TableForm from '../views/TableForm';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -15,15 +15,14 @@ const SingleTable = () => {
     const { tableId } = useParams();
     const table = useSelector(state => findTable(state, tableId));
 
-    useEffect(()=> {if(table===undefined) {navigate("/", { replace : true }) }}, [table]);
+    useEffect(() => { if (table === undefined) { navigate("/", { replace: true }) } }, [table]);
 
     const [currentTable, setCurrentTable] = useState(table);
-    
 
-    const handleSubmit = ({editTable}) => {
+
+    const handleSubmit = ({ editTable }) => {
         setCurrentTable(editTable)
-        console.log('co dostaje action??  ',editTable)
-        dispatch(fetchUpdateRequest({editTable}))
+        dispatch(fetchUpdateRequest({ editTable }))
 
         if (!{ currentTable }) return (
             <div className="d-flex justify-content-center">
