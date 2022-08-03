@@ -2,8 +2,8 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import Footer from './views/Footer';
 import SingleTable from './components/SingleTable';
-import Home from '../src/components/Home';
-import Header from '../src/views/Header';
+import Home from './components/Home';
+import Header from './views/Header';
 import { Routes, Route } from 'react-router-dom';
 import NotFound from './components/NotFound';
 import { fetchStatus } from './redux/statusRedux';
@@ -20,12 +20,12 @@ function App() {
   return (
     <Container>
       <Header/>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/add" element={<AddTableForm/>}/>
-          <Route path="/table/:tableId" element={<SingleTable/>}/>
-          <Route path="*" element={<NotFound/>}/>
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/add" element={<AddTableForm/>}/>
+        <Route path="/table/:tableId" element={<SingleTable/>}/>
+        <Route path="*" element={<NotFound/>}/>
+      </Routes>
       <Footer/>
     </Container>
   )

@@ -7,7 +7,7 @@
   ],
   "tables": [
     {
-      "bill": "0",
+      "bill": "1",
       "maxPeople": "9",
       "id": "1",
       "status": "Busy",
