@@ -23,7 +23,7 @@ const AddTableForm = () => {
     return (
         <div>
             <h1>Add Table here.</h1>
-            <TableForm action={handleSubmit} id={tableId} />
+            <TableForm action={handleSubmit} id={`${tableId}`} />
         </div>
     );
 }
