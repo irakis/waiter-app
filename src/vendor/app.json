@@ -10,7 +10,7 @@
       "bill": "0",
       "maxPeople": "9",
       "id": "2",
-      "status": "Reserved",
+      "status": "Busy",
       "peopleAmount": "3"
     },
     {
@@ -61,13 +61,6 @@
       "id": "10",
       "status": "Cleaning",
       "peopleAmount": "2"
-    },
-    {
-      "bill": "0",
-      "maxPeople": "9",
-      "id": "11",
-      "status": "Free",
-      "peopleAmount": "9"
     }
   ]
 }
