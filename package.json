@@ -25,6 +25,9 @@
   "overrides": {
     "autoprefixer": "10.4.5"
   },
+  "engines": {
+    "node": "16.13.2"
+  },
   "scripts": {
     "start": "npm-run-all -p start:*",
     "start:react": "react-scripts start",
