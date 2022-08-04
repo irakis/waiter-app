@@ -1,14 +1,14 @@
 import React from "react";
 import TableForm from "../views/TableForm";
 import { useDispatch, useSelector } from "react-redux";
-import { getNumberOfTables } from "../redux/statusRedux";
+import { getTablesId } from "../redux/statusRedux";
 import { fetchAddRequest } from "../redux/tablesRedux";
 import Spinner from 'react-bootstrap/Spinner';
 
 const AddTableForm = () => {
     const dispatch = useDispatch();
-    const newTableNumber = useSelector(state => getNumberOfTables(state));
-    const tableId = `${(newTableNumber + 1)}`
+    const tablesId = useSelector(state => getTablesId(state));
+    const tableId = Math.max(...tablesId) + 1;
 
     const handleSubmit = ({ editTable }) => {
         dispatch(fetchAddRequest({ editTable }))

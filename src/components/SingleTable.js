@@ -15,7 +15,7 @@ const SingleTable = () => {
     const { tableId } = useParams();
     const table = useSelector(state => findTable(state, tableId));
 
-    useEffect(() => { if (table === undefined) { navigate("/", { replace: true }) } }, [table]);
+   useEffect(() => { if (table === undefined) { navigate("/", { replace: true }) } }, [table]);
 
     const [currentTable, setCurrentTable] = useState(table);
 

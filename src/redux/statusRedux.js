@@ -2,7 +2,7 @@ import tablesReducer from "./tablesRedux";
 
 //selectors
 export const getAllOptions = (state) => { return state.status };
-export const getNumberOfTables = (state) => { return state.tables.length};
+export const getTablesId = (state) => { return state.tables.map(table => { return  table.id }) };
 
 //actions
 const createActionName = actionName => `app/status/${actionName}`;

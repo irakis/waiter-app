@@ -1,14 +1,18 @@
 import React from 'react';
 import { Row, Col, Form, Button, FormGroup, Alert} from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from "react";
 import { getAllOptions } from '../redux/statusRedux';
 import { useForm } from 'react-hook-form';
+import DeleteModal from './DeleteModal';
+import { fetchDeleteRequest } from '../redux/tablesRedux';
 
 
 const TableForm = ({ action, ...props }) => {
     const { register, handleSubmit: validate, formState: { errors } } = useForm();
+    const [displayDeleteAlert, setDisplayDeleteAlert] = useState(false);
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
     const [editTable, setEditTable] = useState(props.data || {});
@@ -19,6 +23,28 @@ const TableForm = ({ action, ...props }) => {
         action({ editTable });
         navigate("/", { replace: true })
     }
+    const handleClick = e => {
+        e.preventDefault();
+        setDisplayDeleteAlert(true);
+    }
+
+    const handleClose = (e) => {
+        e.preventDefault();
+        setDisplayDeleteAlert(false);
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        dispatch(fetchDeleteRequest(editTable.id))
+        setDisplayDeleteAlert(false);
+        navigate("/", { replace: true })
+    }
+
+    if(displayDeleteAlert) {
+        return (
+            <DeleteModal handleClose={handleClose} id={editTable.id} handleRemove={handleDelete} />
+        )
+    } else
 
     return (
         <Row>
@@ -64,6 +90,7 @@ const TableForm = ({ action, ...props }) => {
                         </Col>
                         <Col md={12} className='m-3 text-center'>
                             <Button variant="primary" type="submit">Update</Button>
+                            <Button className='mx-3' variant="danger" type="onClick" onClick={handleClick}>Delete</Button>
                         </Col>
                     </Row>
                 </Form>
